@@ -6,10 +6,6 @@ import ru.netology.nmedia.databinding.ActivityMainBinding
 
 
 
-var countShare = 9_999
-var countLikes = 1_100
-
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,7 +20,10 @@ class MainActivity : AppCompatActivity() {
             author = "Нетология. Университет интернет-профессий будущего",
             content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netology.ru",
             published = "09 мая в 13:00",
-            likedByMe = false
+            likedByMe = false,
+            countShare = 9_999,
+            countLikes = 1_100
+
         )
         with(binding) {
             author.text = post.author
@@ -38,12 +37,12 @@ class MainActivity : AppCompatActivity() {
                     if (post.likedByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
                 )
                 countLike.setText(
-                    if (post.likedByMe) post.displayNumbers(countLikes--) else post.displayNumbers(countLikes++)
+                    if (post.likedByMe) post.displayNumbers(post.countLikes--) else post.displayNumbers(post.countLikes++)
                 )
 
             }
             share?.setOnClickListener {
-                countShare.setText(post.displayNumbers(ru.netology.nmedia.countShare++))
+                countShare.setText(post.displayNumbers(post.countShare++))
 
             }
 //            root?.setOnClickListener {
