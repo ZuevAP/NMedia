@@ -2,6 +2,8 @@ package ru.netology.nmedia
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import ru.netology.nmedia.data.ViewModel.PostViewModel
 import ru.netology.nmedia.databinding.ActivityMainBinding
 
 
@@ -9,52 +11,40 @@ import ru.netology.nmedia.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private val viewModel = PostViewModel()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        val post = Post(
-            id = 1,
-            author = "Нетология. Университет интернет-профессий будущего",
-            content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netology.ru",
-            published = "09 мая в 13:00",
-            likedByMe = false,
-            countShare = 9_999,
-            countLikes = 1_100
-
-        )
-        with(binding) {
-            author.text = post.author
-            content.text = post.content
-            published.text = post.published
-
-
-            like?.setOnClickListener {
-                post.likedByMe = !post.likedByMe
+        val viewModel: PostViewModel by viewModels()
+        viewModel.data.observe(this) { post ->
+            with(binding) {
+                author.text = post.author
+                published.text = post.published
+                content.text = post.content
                 like.setImageResource(
                     if (post.likedByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
-                )
-                countLike.setText(
-                    if (post.likedByMe) post.displayNumbers(post.countLikes--) else post.displayNumbers(post.countLikes++)
-                )
 
+                )
+                countLike.text = post.displayNumbers(post.countLikes)
+                countShare.text = post.displayNumbers(post.countShare)
             }
-            share?.setOnClickListener {
-                countShare.setText(post.displayNumbers(post.countShare++))
-
-            }
-//            root?.setOnClickListener {
-//
-//            }
-//            imgAvatar?.setOnClickListener {
-//
-//            }
         }
+
+        binding.like.setOnClickListener {
+            viewModel.onLikeClicked()
+        }
+
+        binding.share.setOnClickListener{
+            viewModel.onShareClicked()
+        }
+
+
     }
-
-
 }
 
 
