@@ -3,7 +3,7 @@ package ru.netology.nmedia
 import java.text.DecimalFormat
 
 data class Post (
-    val id: Long,
+    var id: Long,
     val author: String,
     val content: String,
     val published: String,
