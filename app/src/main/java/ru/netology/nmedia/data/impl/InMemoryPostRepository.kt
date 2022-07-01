@@ -6,13 +6,15 @@ import ru.netology.nmedia.data.PostRepository
 
 class InMemoryPostRepository : PostRepository{
 
+    private var nextId = 11L
+
     private val posts get()= checkNotNull(data.value)
 
     override val data = MutableLiveData(
         List(10) { index -> Post(
-        id = index + 1L,
+        id = 1L + index,
         author = "Нетология. Университет интернет-профессий будущего",
-        content = "Привет, это новая Нетология! Контент номер : $index ",
+        content = "Привет, это новая Нетология! Контент номер : ${index + 1} ",
         published = "14 июня в 13:00",
         likedByMe = false,
         countShare = 999 + index * 100,
@@ -37,4 +39,32 @@ class InMemoryPostRepository : PostRepository{
         }
     }
 
+    override fun removeById(postId: Long) {
+        data.value = posts.filter{ it.id != postId }
+        data.value = posts
+        return
+    }
+
+    override fun save(post: Post) {
+        if (post.id == 0L) {
+
+            data.value = listOf(
+                post.copy(
+                    id = nextId,
+                    author = "Me",
+                    content = post.content,
+                    likedByMe = false,
+                    published = "now  $nextId"
+                )
+            ) + posts
+            nextId++
+            data.value = posts
+            return
+        }
+
+        data.value = posts.map {
+            if (it.id != post.id) it else it.copy(content = post.content)
+        }
+        data.value = posts
+    }
 }
