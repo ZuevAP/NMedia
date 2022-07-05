@@ -43,22 +43,12 @@ class PostViewHolder(
             author.text = post.author
             published.text = post.published
             content.text = post.content
-            like.setImageResource(
+            like.isChecked = post.likedByMe
+            like.text = post.displayNumbers(post.countLikes)
+            share.text = post.displayNumbers(post.countShare)
+            like.setIconResource(
                 if (post.likedByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
             )
-            countLike.text = post.countLikes.toString()
-            countShare.text = post.countShare.toString()
-
-            like.setOnClickListener {
-                onInteractionListener.onLike(post)
-            }
-            share.setOnClickListener {
-                onInteractionListener.onShare(post)
-
-            }
-
-
-
 
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
@@ -80,6 +70,14 @@ class PostViewHolder(
                 }.show()
             }
 
+                    like.setOnClickListener {
+                        onInteractionListener.onLike(post)
+                    }
+                    share.setOnClickListener {
+                        onInteractionListener.onShare(post)
+
+
+            }
 
         }
     }

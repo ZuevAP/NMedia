@@ -11,10 +11,12 @@
         <entry key="..\:/HomeworkAndroid/Homework1/app/src/main/res/drawable/ic_baseline_visibility_24.xml" value="0.195" />
         <entry key="..\:/HomeworkAndroid/Homework1/app/src/main/res/drawable/ic_launcher_background.xml" value="0.294" />
         <entry key="..\:/HomeworkAndroid/Homework1/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.195" />
+        <entry key="..\:/HomeworkAndroid/Homework1/app/src/main/res/drawable/ic_like_24.xml" value="0.1615" />
         <entry key="..\:/HomeworkAndroid/Homework1/app/src/main/res/drawable/ic_save_48.xml" value="0.2565" />
-        <entry key="..\:/HomeworkAndroid/Homework1/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/HomeworkAndroid/Homework1/app/src/main/res/layout/post.xml" value="0.3625" />
+        <entry key="..\:/HomeworkAndroid/Homework1/app/src/main/res/layout/activity_main.xml" value="0.2958579881656805" />
+        <entry key="..\:/HomeworkAndroid/Homework1/app/src/main/res/layout/post.xml" value="0.5" />
         <entry key="..\:/HomeworkAndroid/Homework1/app/src/main/res/menu/option_post.xml" value="0.36666666666666664" />
+        <entry key="..\:/HomeworkAndroid/Homework1/app/src/main/res/menu/options_post.xml" value="0.36666666666666664" />
         <entry key="..\:/HomeworkAndroid/Homework1/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.294" />
         <entry key="..\:/HomeworkAndroid/Homework1/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.278" />
       </map>
