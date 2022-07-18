@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">НМедиа!</string>
+    <string name="Hello">НМедиа!</string>
+    <string name="remove">Удаление</string>
+    <string name="edit">Редактирование</string>
+    <string name="post_text">Ввведите текст</string>
+    <string name="description_post_like" />
+    <string name="edit_message">Редактирование сообщения</string>
+    <string name="chooser_share_post">Поделиться записью</string>
+    <string name="description_post_save">Сохранить</string>
+    <string name="add_post">Добавить пост</string>
+    <string name="chooser_share_video">Посмотреть видео</string>
+
+</resources>
