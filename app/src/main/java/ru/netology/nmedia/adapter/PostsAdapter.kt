@@ -1,13 +1,19 @@
 package ru.netology.nmedia.adapter
 
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.activity.result.launch
+
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.Post
 import ru.netology.nmedia.R
+import ru.netology.nmedia.activity.MainActivity
+import ru.netology.nmedia.activity.PostResultContract
+
 import ru.netology.nmedia.databinding.PostBinding
 
 
@@ -16,6 +22,9 @@ interface OnInteractionListener {
     fun onShare(post: Post) {}
     fun onEdit(post: Post) {}
     fun onRemove(post: Post) {}
+    fun onVideo(post: Post){}
+
+
 }
 
 class PostsAdapter(
@@ -49,6 +58,7 @@ class PostViewHolder(
             like.setIconResource(
                 if (post.likedByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
             )
+            video.text = post.video
 
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
@@ -69,18 +79,25 @@ class PostViewHolder(
                     }
                 }.show()
             }
+            video.setOnClickListener{
+                onInteractionListener.onVideo(post)
+            }
 
-                    like.setOnClickListener {
-                        onInteractionListener.onLike(post)
-                    }
-                    share.setOnClickListener {
-                        onInteractionListener.onShare(post)
+            like.setOnClickListener {
+                onInteractionListener.onLike(post)
+            }
+            share.setOnClickListener {
+              onInteractionListener.onShare(post)
 
 
             }
 
+
+
+
         }
     }
+
 }
 
 class PostDiffCallback : DiffUtil.ItemCallback<Post>() {

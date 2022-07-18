@@ -1,20 +1,26 @@
 package ru.netology.nmedia.data.ViewModel
 
+import android.content.Intent
+import android.text.Editable
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.netology.nmedia.Post
+import ru.netology.nmedia.activity.PostContentActivity
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.data.PostRepository
 import ru.netology.nmedia.data.impl.InMemoryPostRepository
-import ru.netology.nmedia.util.AndroidUtils
+import ru.netology.nmedia.util.SingleLiveEvent
 
-private val empty = Post(
+
+val empty = Post(
     id = 0,
     content = "",
     author = "",
     likedByMe = false,
-    published = ""
+    published = "",
+     video=""
 )
 
 class PostViewModel: ViewModel(), OnInteractionListener {
@@ -23,7 +29,8 @@ class PostViewModel: ViewModel(), OnInteractionListener {
 
     val data by repository::data
 
-    val edited = MutableLiveData(empty)
+    private val edited = MutableLiveData(empty)
+
 
     override fun onLike(post: Post) = repository.like(post.id)
 
@@ -43,6 +50,7 @@ class PostViewModel: ViewModel(), OnInteractionListener {
 
     fun edit(post: Post) {
         edited.value = post
+
     }
 
     fun changeContent(content: String) {
@@ -52,6 +60,5 @@ class PostViewModel: ViewModel(), OnInteractionListener {
         }
         edited.value = edited.value?.copy(content = text)
     }
-
 
 }

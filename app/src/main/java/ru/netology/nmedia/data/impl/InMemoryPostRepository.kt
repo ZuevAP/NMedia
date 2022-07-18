@@ -18,7 +18,8 @@ class InMemoryPostRepository : PostRepository{
         published = "14 июня в 13:00",
         likedByMe = false,
         countShare = 999 + index * 100,
-        countLikes = 1_099 + index * 100
+        countLikes = 1_099 + index * 100,
+        video = "https://www.youtube.com/watch?v=jNQXAC9IVRw"
         )}
     )
 

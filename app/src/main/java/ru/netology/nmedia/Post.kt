@@ -5,12 +5,13 @@ import java.text.DecimalFormat
 data class Post (
     var id: Long,
     val author: String,
-    val content: String,
+    var content: String,
     val published: String,
     var likes: Int = 0,
     var likedByMe: Boolean = false,
     var countShare: Int = 0,
-    var countLikes: Int = 0
+    var countLikes: Int = 0,
+    val video: String
 
 
 ) {
