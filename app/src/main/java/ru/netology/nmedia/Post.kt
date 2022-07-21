@@ -1,7 +1,9 @@
 package ru.netology.nmedia
 
+import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Serializable
 import java.text.DecimalFormat
-
+@Serializable
 data class Post (
     var id: Long,
     val author: String,

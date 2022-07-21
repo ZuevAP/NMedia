@@ -1,17 +1,13 @@
 package ru.netology.nmedia.data.ViewModel
 
-import android.content.Intent
-import android.text.Editable
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import ru.netology.nmedia.Post
-import ru.netology.nmedia.activity.PostContentActivity
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.data.PostRepository
-import ru.netology.nmedia.data.impl.InMemoryPostRepository
-import ru.netology.nmedia.util.SingleLiveEvent
+import ru.netology.nmedia.data.impl.FilePrefsPostRepository
+import ru.netology.nmedia.data.impl.SharedPrefsPostRepository
 
 
 val empty = Post(
@@ -23,9 +19,11 @@ val empty = Post(
      video=""
 )
 
-class PostViewModel: ViewModel(), OnInteractionListener {
+class PostViewModel(
+    application: Application
+): AndroidViewModel(application), OnInteractionListener {
 
-    private val repository: PostRepository = InMemoryPostRepository()
+    private val repository: PostRepository = FilePrefsPostRepository(application)
 
     val data by repository::data
 
