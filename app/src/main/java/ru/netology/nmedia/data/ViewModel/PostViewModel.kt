@@ -7,7 +7,6 @@ import ru.netology.nmedia.Post
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.data.PostRepository
 import ru.netology.nmedia.data.impl.FilePrefsPostRepository
-import ru.netology.nmedia.data.impl.SharedPrefsPostRepository
 
 
 val empty = Post(
@@ -27,7 +26,11 @@ class PostViewModel(
 
     val data by repository::data
 
-    private val edited = MutableLiveData(empty)
+     var edited = MutableLiveData(empty)
+
+    var postToFragment = MutableLiveData(empty)
+
+
 
 
     override fun onLike(post: Post) = repository.like(post.id)
@@ -35,6 +38,7 @@ class PostViewModel(
     override fun onShare(post: Post) = repository.share(post.id)
 
     override fun onRemove(post: Post) = repository.removeById(post.id)
+
 
 
 

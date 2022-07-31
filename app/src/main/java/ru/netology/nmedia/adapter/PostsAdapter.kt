@@ -4,15 +4,12 @@ package ru.netology.nmedia.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import androidx.activity.result.launch
 
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.Post
 import ru.netology.nmedia.R
-import ru.netology.nmedia.activity.MainActivity
-import ru.netology.nmedia.activity.PostResultContract
 
 import ru.netology.nmedia.databinding.PostBinding
 
@@ -23,8 +20,7 @@ interface OnInteractionListener {
     fun onEdit(post: Post) {}
     fun onRemove(post: Post) {}
     fun onVideo(post: Post){}
-
-
+    fun onOpenPost(post: Post){}
 }
 
 class PostsAdapter(
@@ -79,6 +75,8 @@ class PostViewHolder(
                     }
                 }.show()
             }
+
+
             video.setOnClickListener{
                 onInteractionListener.onVideo(post)
             }
@@ -90,6 +88,9 @@ class PostViewHolder(
               onInteractionListener.onShare(post)
 
 
+            }
+            content.setOnClickListener {
+                onInteractionListener.onOpenPost(post)
             }
 
 

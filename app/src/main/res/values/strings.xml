@@ -10,5 +10,6 @@
     <string name="chooser_share_post">Share post</string>
     <string name="description_post_save">Save</string>
     <string name="add_post">Add post</string>
-    <string name="chooser_share_video">Video</string>
+    <string name="chooser_share_video">Share video</string>
+
 </resources>

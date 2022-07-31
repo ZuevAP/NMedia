@@ -1,6 +1,5 @@
 package ru.netology.nmedia
 
-import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 import java.text.DecimalFormat
 @Serializable
